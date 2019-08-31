@@ -1,6 +1,6 @@
 // import { useState, useRef, useEffect } from "react";
 import { FractalPoint } from "./Types";
-import { loadImgPromise } from "../Helpers"
+import { loadImgPromise } from "../Helpers";
 
 class FractalCanvas {
   public fractalBorder = "#F0F";
@@ -18,9 +18,9 @@ class FractalCanvas {
       return false;
     const ctx = this.canvas.getContext("2d");
     if (ctx === null) return false;
-    let fractalPointsCopy = <FractalPoint[]>(
-      JSON.parse(JSON.stringify(this.fractalPoints))
-    );
+    let fractalPointsCopy = JSON.parse(
+      JSON.stringify(this.fractalPoints)
+    ) as FractalPoint[];
     this.myImg = await loadImgPromise(this.myImg, srcCanvas.toDataURL());
     ctx.drawImage(this.myImg, 0, 0, this.canvas.width, this.canvas.height);
     // ctx.globalCompositeOperation = "destination-over";

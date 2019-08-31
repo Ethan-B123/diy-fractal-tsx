@@ -10,7 +10,6 @@ interface AppProps {
 
 const App: React.FC<AppProps> = props => {
   console.log(props);
-
   return (
     <div className="App">
       <p>I am the react root</p>

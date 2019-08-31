@@ -4,4 +4,5 @@ export interface FractalPoint {
   w: number;
   h: number;
   iters: number;
+  id: number;
 }
