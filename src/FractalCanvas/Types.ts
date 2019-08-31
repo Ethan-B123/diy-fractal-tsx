@@ -6,3 +6,13 @@ export interface FractalPoint {
   iters: number;
   id: number;
 }
+
+export interface SourcePoint {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  color: string;
+  type: "Circle" | "Box";
+  id: number;
+}
