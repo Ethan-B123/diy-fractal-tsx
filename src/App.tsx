@@ -3,6 +3,7 @@ import "./App.css";
 import { AppState } from "./Store/store";
 import { FractalPointsState } from "./Store/FractalPoints/Types";
 import { connect } from "react-redux";
+import SourcePointIndex from "./Components/Form/SourcePointIndex"
 
 interface AppProps {
   fractalPoints?: FractalPointsState;
@@ -13,6 +14,7 @@ const App: React.FC<AppProps> = props => {
   return (
     <div className="App">
       <p>I am the react root</p>
+      <SourcePointIndex />
     </div>
   );
 };
