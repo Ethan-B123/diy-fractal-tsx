@@ -5,6 +5,7 @@ import { SourcePointActionTypes } from "../../Store/SourcePoints/Types";
 interface SourcePointIndexItemProps {
   point: SourcePoint;
   editPoint: (point: SourcePoint) => SourcePointActionTypes;
+  removePoint: (point: SourcePoint) => SourcePointActionTypes;
 }
 
 const onChangeInt = (
@@ -40,6 +41,10 @@ const onTypeChange = (props: SourcePointIndexItemProps) => (
   props.editPoint(copy);
 };
 
+const onRemove = (props: SourcePointIndexItemProps) => () => {
+  props.removePoint(props.point);
+};
+
 export const SourcePointIndexItem: React.FC<SourcePointIndexItemProps> = (
   props: SourcePointIndexItemProps
 ) => {
@@ -56,6 +61,8 @@ export const SourcePointIndexItem: React.FC<SourcePointIndexItemProps> = (
         onChange={onColorChange(props)}
         value={props.point.color}
       />
+      <p>remove:</p>
+      <button onClick={onRemove(props)}>Click to remove</button>
       <p>x:</p>
       <input
         type="number"

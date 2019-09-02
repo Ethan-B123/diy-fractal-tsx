@@ -2,6 +2,7 @@ import {
   SourcePointActionTypes,
   ADD_SOURCE_POINT,
   EDIT_SOURCE_POINT,
+  REMOVE_SOURCE_POINT,
   SourcePointsState
 } from "./Types";
 import { SourcePoint } from "../../FractalCanvas/Types";
@@ -32,6 +33,18 @@ export function SourcePointsReducer(
         }
       }
       return SPsCopy1;
+    case REMOVE_SOURCE_POINT:
+      const removePoint2 = JSON.parse(
+        JSON.stringify(action.point)
+      ) as SourcePoint;
+      const SPsCopy2 = JSON.parse(JSON.stringify(state)) as SourcePointsState;
+      for (let i = 0; i < SPsCopy2.points.length; i++) {
+        if (SPsCopy2.points[i].id === removePoint2.id) {
+          SPsCopy2.points.splice(i, 1);
+          break;
+        }
+      }
+      return SPsCopy2;
     default:
       return state;
   }

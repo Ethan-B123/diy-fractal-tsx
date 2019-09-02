@@ -2,6 +2,7 @@ import { SourcePoint } from "../../FractalCanvas/Types";
 
 export const ADD_SOURCE_POINT = "UC_ADD_SOURCE_POINT";
 export const EDIT_SOURCE_POINT = "UC_EDIT_SOURCE_POINT";
+export const REMOVE_SOURCE_POINT = "REMOVE_SOURCE_POINT";
 
 export interface AddSourcePointAction {
   type: typeof ADD_SOURCE_POINT;
@@ -13,9 +14,17 @@ export interface EditSourcePointAction {
   point: SourcePoint;
 }
 
+export interface RemoveSourcePointAction {
+  type: typeof REMOVE_SOURCE_POINT;
+  point: SourcePoint;
+}
+
 export interface SourcePointsState {
   points: Array<SourcePoint>;
   maxId: number;
 }
 
-export type SourcePointActionTypes = AddSourcePointAction | EditSourcePointAction;
+export type SourcePointActionTypes =
+  | AddSourcePointAction
+  | EditSourcePointAction
+  | RemoveSourcePointAction;

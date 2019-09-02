@@ -3,17 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-// import FractalCanvas from "./FractalCanvas/FractalCanvas";
+import FractalCanvas from "./FractalCanvas/FractalCanvas";
 import createStore from "./Store/store";
 import { addPoint, editPoint } from "./Store/FractalPoints/actions";
-import * as SourcePointActions from "./Store/SourcePoints/Actions";
 import { FractalPoint, SourcePoint } from "./FractalCanvas/Types";
 import { Provider } from "react-redux";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // const HTMLFractalCanvas = document.getElementById(
-  //   "fractal-canvas"
-  // ) as HTMLCanvasElement;
+  const HTMLFractalCanvas = document.getElementById(
+    "fractal-canvas"
+  ) as HTMLCanvasElement;
+  const HTMLSourceCanvas = document.getElementById(
+    "input-canvas"
+  ) as HTMLCanvasElement;
   const store = createStore();
   function addThing() {
     store.dispatch(addPoint(makeFP()));
@@ -33,33 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     store.dispatch(editPoint(makeFP()));
   }
-  function addSource() {
-    store.dispatch(SourcePointActions.addPoint(makeSP()));
-  }
-  function editSource(id: number, newVals: number) {
-    const state = store.getState();
-    const sourcePoints = state.sourcePoints;
-    for (let i = 0; i < sourcePoints.points.length; i++) {
-      if (sourcePoints.points[i].id === id) {
-        const pointCopy = JSON.parse(
-          JSON.stringify(sourcePoints.points[i])
-        ) as SourcePoint;
-        pointCopy.x = newVals;
-        pointCopy.y = newVals;
-        return store.dispatch(SourcePointActions.editPoint(pointCopy));
-      }
-    }
-    // store.dispatch(editPoint(makeFP()));
-  }
   //@ts-ignore
   window.addThing = addThing;
   //@ts-ignore
   window.editThing = editThing;
-  //@ts-ignore
-  window.addSource = addSource;
-  //@ts-ignore
-  window.editSource = editSource;
-  // const fractalCanvas = new FractalCanvas(HTMLFractalCanvas);
+
+  const fractalCanvas = new FractalCanvas(HTMLFractalCanvas, HTMLSourceCanvas);
+
+  fractalCanvas.receiveUpdates(store.getState());
+  store.subscribe(() => {
+    fractalCanvas.receiveUpdates(store.getState());
+  });
 
   ReactDOM.render(
     <Provider store={store}>
