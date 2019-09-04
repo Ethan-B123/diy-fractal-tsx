@@ -2,6 +2,10 @@ import {
   ADD_FRACTAL_POINT,
   EDIT_FRACTAL_POINT,
   REMOVE_FRACTAL_POINT,
+  SET_GCO,
+  GCO_Value,
+  SET_ITER_DELAY,
+  SET_FORCE_FULL_PLAY,
   FractalPointActionTypes
 } from "./Types";
 import { FractalPoint } from "../../FractalCanvas/Types";
@@ -24,5 +28,28 @@ export function removePoint(point: FractalPoint): FractalPointActionTypes {
   return {
     type: REMOVE_FRACTAL_POINT,
     point
+  };
+}
+
+export function setGCO(newGCO: GCO_Value): FractalPointActionTypes {
+  return {
+    type: SET_GCO,
+    newGCO
+  };
+}
+
+export function setIterDelay(newDelay: number): FractalPointActionTypes {
+  return {
+    type: SET_ITER_DELAY,
+    newDelay
+  };
+}
+
+export function setForceFullPlay(
+  forceFullPlay: boolean
+): FractalPointActionTypes {
+  return {
+    type: SET_FORCE_FULL_PLAY,
+    forceFullPlay
   };
 }

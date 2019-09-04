@@ -4,6 +4,10 @@
 }
 
 .App > div {
-  height: calc(100vh - 30px);
+  height: 100vh;
   overflow: auto;
+}
+
+.app-nav-header {
+  padding: 5px 10px;
 }

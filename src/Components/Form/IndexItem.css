@@ -1,6 +1,7 @@
 .point-index-item {
   display: grid;
   grid-template-columns: 80px 1fr;
+  padding-bottom: 5px;
 }
 .point-index-item * {
   box-sizing: border-box;
@@ -10,7 +11,8 @@
   padding: 5px 10px;
   text-align: right;
 }
-.point-index-item > input, .point-index-item > select {
+.point-index-item > input,
+.point-index-item > select {
   border-radius: 0;
   width: 100%;
   height: 100%;

@@ -1,8 +1,9 @@
 .index-nav {
   position: sticky;
   top: 0;
-  background-color: hsla(240, 15%, 25%, 1)
+  background-color: hsla(240, 15%, 25%, 1);
+  padding: 5px 10px;
 }
-.index-nav > p{
+.index-nav > p {
   margin: 0;
 }

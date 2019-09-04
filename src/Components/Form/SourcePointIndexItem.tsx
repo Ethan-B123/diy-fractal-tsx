@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { SourcePoint } from "../../FractalCanvas/Types";
 import { SourcePointActionTypes } from "../../Store/SourcePoints/Types";
 
@@ -10,14 +10,15 @@ interface SourcePointIndexItemProps {
 
 const onChangeInt = (
   props: SourcePointIndexItemProps,
+  hookSetFn: React.Dispatch<React.SetStateAction<string>>,
   changeVal: "x" | "y" | "w" | "h"
 ) => (e: ChangeEvent<HTMLInputElement>) => {
   const val = e.currentTarget.value;
   const copy = JSON.parse(JSON.stringify(props.point)) as SourcePoint;
   if (val === "") {
-    copy[changeVal] = 0;
-    props.editPoint(copy);
+    hookSetFn(val);
   } else if (!isNaN(parseInt(val))) {
+    hookSetFn(val);
     copy[changeVal] = parseInt(val);
     props.editPoint(copy);
   }
@@ -48,6 +49,11 @@ const onRemove = (props: SourcePointIndexItemProps) => () => {
 export const SourcePointIndexItem: React.FC<SourcePointIndexItemProps> = (
   props: SourcePointIndexItemProps
 ) => {
+  const [x, set_x] = useState(props.point.x.toString());
+  const [y, set_y] = useState(props.point.y.toString());
+  const [w, set_w] = useState(props.point.w.toString());
+  const [h, set_h] = useState(props.point.h.toString());
+
   return (
     <div className="point-index-item">
       <p>shape:</p>
@@ -66,26 +72,26 @@ export const SourcePointIndexItem: React.FC<SourcePointIndexItemProps> = (
       <p>x:</p>
       <input
         type="number"
-        onChange={onChangeInt(props, "x")}
-        value={props.point.x}
+        onChange={onChangeInt(props, set_x, "x")}
+        value={x}
       />
       <p>y:</p>
       <input
         type="number"
-        onChange={onChangeInt(props, "y")}
-        value={props.point.y}
+        onChange={onChangeInt(props, set_y, "y")}
+        value={y}
       />
       <p>w:</p>
       <input
         type="number"
-        onChange={onChangeInt(props, "w")}
-        value={props.point.w}
+        onChange={onChangeInt(props, set_w, "w")}
+        value={w}
       />
       <p>h:</p>
       <input
         type="number"
-        onChange={onChangeInt(props, "h")}
-        value={props.point.h}
+        onChange={onChangeInt(props, set_h, "h")}
+        value={h}
       />
     </div>
   );

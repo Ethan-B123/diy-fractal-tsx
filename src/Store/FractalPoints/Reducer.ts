@@ -1,8 +1,10 @@
 import {
-  FractalPointActionTypes,
   ADD_FRACTAL_POINT,
   EDIT_FRACTAL_POINT,
   REMOVE_FRACTAL_POINT,
+  SET_GCO,
+  SET_ITER_DELAY,
+  SET_FORCE_FULL_PLAY,
   FractalPointsState
 } from "./Types";
 import {
@@ -16,7 +18,10 @@ import { FractalPoint } from "../../FractalCanvas/Types";
 const initialState: FractalPointsState = {
   points: [],
   maxId: 0,
-  updateId: 0
+  updateId: 0,
+  globalCompositeOperation: "source-over",
+  forceFullPlay: true,
+  iterationDelay: 0
 };
 
 export function FractalPointsReducer(
@@ -71,6 +76,19 @@ export function FractalPointsReducer(
       const FPsCopy4 = JSON.parse(JSON.stringify(state)) as FractalPointsState;
       FPsCopy4.updateId++;
       return FPsCopy4;
+    case SET_GCO:
+      const FPsCopy6 = JSON.parse(JSON.stringify(state)) as FractalPointsState;
+      FPsCopy6.globalCompositeOperation = action.newGCO;
+      FPsCopy6.updateId++;
+      return FPsCopy6;
+    case SET_ITER_DELAY:
+      const FPsCopy7 = JSON.parse(JSON.stringify(state)) as FractalPointsState;
+      FPsCopy7.iterationDelay = action.newDelay;
+      return FPsCopy7;
+    case SET_FORCE_FULL_PLAY:
+      const FPsCopy8 = JSON.parse(JSON.stringify(state)) as FractalPointsState;
+      FPsCopy8.forceFullPlay = action.forceFullPlay;
+      return FPsCopy8;
     default:
       return state;
   }

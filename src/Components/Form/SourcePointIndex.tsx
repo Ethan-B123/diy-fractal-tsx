@@ -6,7 +6,11 @@ import {
   SourcePointsState,
   SourcePointActionTypes
 } from "../../Store/SourcePoints/Types";
-import { addPoint, editPoint, removePoint } from "../../Store/SourcePoints/Actions";
+import {
+  addPoint,
+  editPoint,
+  removePoint
+} from "../../Store/SourcePoints/Actions";
 import { SourcePoint } from "../../FractalCanvas/Types";
 import { SourcePointIndexItem } from "./SourcePointIndexItem";
 import "./IndexItem.css";
@@ -22,9 +26,6 @@ interface SourcePointIndexProps {
 const SourcePointIndex: React.FC<SourcePointIndexProps> = (
   props: SourcePointIndexProps
 ) => {
-  // if (!props.sourcePoints) return <></>;
-  // if (!props.addSourcePoint) return <></>;
-  // if (!props.editSourcePoint) return <></>;
   return (
     <div>
       <div className="index-nav">
@@ -61,7 +62,7 @@ const MDTP = (dispatch: Dispatch) => {
   return {
     addSourcePoint: () => dispatch(addPoint(defaultSourcePoint)),
     editSourcePoint: (point: SourcePoint) => dispatch(editPoint(point)),
-    removeSourcePoint: (point: SourcePoint) => dispatch(removePoint(point)),
+    removeSourcePoint: (point: SourcePoint) => dispatch(removePoint(point))
   };
 };
 
