@@ -5,7 +5,6 @@ import {
   SET_GCO,
   GCO_Value,
   SET_ITER_DELAY,
-  SET_FORCE_FULL_PLAY,
   FractalPointActionTypes
 } from "./Types";
 import { FractalPoint } from "../../FractalCanvas/Types";
@@ -42,14 +41,5 @@ export function setIterDelay(newDelay: number): FractalPointActionTypes {
   return {
     type: SET_ITER_DELAY,
     newDelay
-  };
-}
-
-export function setForceFullPlay(
-  forceFullPlay: boolean
-): FractalPointActionTypes {
-  return {
-    type: SET_FORCE_FULL_PLAY,
-    forceFullPlay
   };
 }

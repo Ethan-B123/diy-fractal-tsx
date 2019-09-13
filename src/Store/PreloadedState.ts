@@ -19,7 +19,6 @@ const normal = (): AppState => ({
       { x: 450, y: 350, w: 300, h: 300, iters: 4, id: 2 },
       { x: 350, y: 500, w: 300, h: 300, iters: 4, id: 3 }
     ],
-    forceFullPlay: true,
     iterationDelay: 0
   },
   sourcePoints: {
@@ -45,7 +44,6 @@ const normal = (): AppState => ({
 
 const other = (): AppState => ({
   fractalPoints: {
-    forceFullPlay: true,
     globalCompositeOperation: "source-over",
     iterationDelay: 0,
     maxId: 3,
@@ -55,16 +53,32 @@ const other = (): AppState => ({
       { h: 300, id: 1, iters: 1, w: 300, x: 350, y: 200 },
       { h: 300, id: 2, iters: 4, w: 300, x: 450, y: 350 },
       { h: 300, id: 3, iters: 4, w: 300, x: 350, y: 500 }
-    ],
+    ]
   },
   sourcePoints: {
     maxId: 7,
     points: [
-      { color: "#285288", h: 210, id: 4, type: "Circle", w: 210, x: 350, y: 150 },
-      { color: "#f4d297", h: 150, id: 6, type: "Circle", w: 150, x: 350, y: 125 },
+      {
+        color: "#285288",
+        h: 210,
+        id: 4,
+        type: "Circle",
+        w: 210,
+        x: 350,
+        y: 150
+      },
+      {
+        color: "#f4d297",
+        h: 150,
+        id: 6,
+        type: "Circle",
+        w: 150,
+        x: 350,
+        y: 125
+      },
       { color: "#fffffe", h: 60, id: 7, type: "Circle", w: 60, x: 350, y: 350 }
     ]
   }
-})
+});
 
 export default other;

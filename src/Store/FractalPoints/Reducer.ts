@@ -4,7 +4,6 @@ import {
   REMOVE_FRACTAL_POINT,
   SET_GCO,
   SET_ITER_DELAY,
-  SET_FORCE_FULL_PLAY,
   FractalPointsState
 } from "./Types";
 import {
@@ -20,7 +19,6 @@ const initialState: FractalPointsState = {
   maxId: 0,
   updateId: 0,
   globalCompositeOperation: "source-over",
-  forceFullPlay: true,
   iterationDelay: 0
 };
 
@@ -85,10 +83,6 @@ export function FractalPointsReducer(
       const FPsCopy7 = JSON.parse(JSON.stringify(state)) as FractalPointsState;
       FPsCopy7.iterationDelay = action.newDelay;
       return FPsCopy7;
-    case SET_FORCE_FULL_PLAY:
-      const FPsCopy8 = JSON.parse(JSON.stringify(state)) as FractalPointsState;
-      FPsCopy8.forceFullPlay = action.forceFullPlay;
-      return FPsCopy8;
     default:
       return state;
   }

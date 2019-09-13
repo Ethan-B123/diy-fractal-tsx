@@ -5,7 +5,6 @@ export const EDIT_FRACTAL_POINT = "UC_EDIT_FRACTAL_POINT";
 export const SET_GCO = "SET_GCO";
 export const REMOVE_FRACTAL_POINT = "REMOVE_FRACTAL_POINT";
 export const SET_ITER_DELAY = "SET_ITER_DELAY";
-export const SET_FORCE_FULL_PLAY = "SET_FORCE_FULL_PLAY";
 
 export interface AddFractalPointAction {
   type: typeof ADD_FRACTAL_POINT;
@@ -29,11 +28,6 @@ export interface SetIterDelayAction {
   newDelay: number;
 }
 
-export interface SetForceFullPlayAction {
-  type: typeof SET_FORCE_FULL_PLAY;
-  forceFullPlay: boolean;
-}
-
 export interface RemoveFractalPointAction {
   type: typeof REMOVE_FRACTAL_POINT;
   point: FractalPoint;
@@ -44,7 +38,6 @@ export interface FractalPointsState {
   maxId: number;
   updateId: number;
   globalCompositeOperation: GCO_Value;
-  forceFullPlay: boolean;
   iterationDelay: number;
 }
 
@@ -53,5 +46,4 @@ export type FractalPointActionTypes =
   | EditFractalPointAction
   | RemoveFractalPointAction
   | SetGCOFractalPointAction
-  | SetIterDelayAction
-  | SetForceFullPlayAction;
+  | SetIterDelayAction;

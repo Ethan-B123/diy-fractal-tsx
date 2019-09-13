@@ -12,7 +12,6 @@ import {
   editPoint,
   removePoint,
   setGCO,
-  setForceFullPlay,
   setIterDelay
 } from "../../Store/FractalPoints/actions";
 import { FractalPoint } from "../../FractalCanvas/Types";
@@ -85,8 +84,6 @@ const MDTP = (dispatch: Dispatch) => {
     editFractalPoint: (point: FractalPoint) => dispatch(editPoint(point)),
     removeFractalPoint: (point: FractalPoint) => dispatch(removePoint(point)),
     setGCO: (newGCO: GCO_Value) => dispatch(setGCO(newGCO)),
-    setForceFullPlay: (forceFullPlay: boolean) =>
-      dispatch(setForceFullPlay(forceFullPlay)),
     setIterDelay: (newDelay: number) => dispatch(setIterDelay(newDelay))
   };
 };
