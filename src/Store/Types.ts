@@ -1,4 +1,11 @@
-import { SourcePointActionTypes } from "./SourcePoints/Types";
-import { FractalPointActionTypes } from "./FractalPoints/Types";
+import { SourcePointActionTypes } from './SourcePoints/Types';
+import { FractalPointActionTypes } from './FractalPoints/Types';
+import { SavesAction } from './Saves/Types';
+import { AppState } from './store';
 
-export type PointActionType = SourcePointActionTypes | FractalPointActionTypes;
+export type ActionType =
+	| SourcePointActionTypes
+	| FractalPointActionTypes
+	| SavesAction;
+
+export type AppState = AppState;

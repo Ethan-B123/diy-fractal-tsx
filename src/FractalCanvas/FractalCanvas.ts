@@ -33,6 +33,8 @@ class FractalCanvas {
     ctx.save();
     ctx.translate(point.x, point.y);
     ctx.fillStyle = point.color;
+    // ctx.shadowColor = "#ff0000";
+    // ctx.shadowBlur = 15;
     if (point.type === "Circle") {
       ctx.beginPath();
       ctx.ellipse(0, 0, point.w / 2, point.h / 2, 0, 0, Math.PI * 2);
