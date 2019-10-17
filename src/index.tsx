@@ -8,7 +8,7 @@ import createStore from './Store/store';
 import { Provider } from 'react-redux';
 import { ThunkAction } from 'redux-thunk';
 import { AppState, ActionType } from './Store/Types';
-import { SaveSave, LoadSave } from './Store/Saves/actions';
+import { LoadSave } from './Store/Saves/actions';
 
 // Return, State, Extra_arg, Action
 
@@ -24,30 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
 	const store = createStore();
 	const fractalCanvas = new FractalCanvas(HTMLFractalCanvas, HTMLSourceCanvas);
 
-	//@ts-ignore
-	window.store = store;
+	store.dispatch(LoadSave(store.getState().saves.current.name));
 
-	const testingS = (name = 'bob') => {
-		store.dispatch(SaveSave(name));
-	};
-	const testingL = (name = 'bob') => {
-		store.dispatch(LoadSave(name));
-	};
-
-	//@ts-ignore
-	window.testingS = testingS;
-	//@ts-ignore
-	window.testingL = testingL;
 	function p() {
-		const state = store.getState()
+		const state = store.getState();
 		const joined = {
 			...state
-		}
-		delete joined.saves
-		console.log(JSON.stringify(joined))
+		};
+		delete joined.saves;
+		console.log(JSON.stringify(joined));
 	}
 	//@ts-ignore
-	window.p = p
+	window.store = store;
+	//@ts-ignore
+	window.p = p;
 
 	fractalCanvas.receiveUpdates(store.getState());
 	store.subscribe(() => {

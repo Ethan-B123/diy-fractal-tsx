@@ -21,7 +21,6 @@ const SavesComponent: FC<SavesComponentProps> = function(props) {
 		setSaveInputText(props.name + ' copy');
 	}, [props.name]);
 	const saveNames: string[] = Object.keys(props.others);
-	console.log(props);
 
 	return (
 		<div>

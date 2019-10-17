@@ -1,7 +1,7 @@
 .point-index-item {
   display: grid;
-  grid-template-columns: 80px 1fr;
-  padding-bottom: 5px;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 5px;
 }
 .point-index-item * {
   box-sizing: border-box;
