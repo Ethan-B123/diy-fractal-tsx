@@ -1,8 +1,8 @@
 # typescript-fractals
 
 This project allows you to create your own fractals. You can create shapes on the canvas and then pick areas to repeatedly print the canvas back onto itself, resulting in fractal patterns. </br></br>
-Check out the project [here](https://typescript-fractals.netlify.com/). You can use the "source points" menu section to build the source image, and the "fractal points" menu to decide how you want the image to repeat onto itself.</br></br>
-The key component of this entire project is the loadImgPromise function. This function allows me to asynchronously load the pixel data of the canvas into an image, and wait for that image to load. Once it has, I am able to use the ctx drawImage method to print the contents of the source image back onto the canvas.
+Check out the project [here](https://typescript-fractals.netlify.com/). You can use the "source points" menu to build the source image, and the "fractal points" to decide how you want the image to repeat onto itself.</br></br>
+The key function of this project is the loadImgPromise function. This function allows me to asynchronously load the pixel data of the canvas into an image, and wait for that image to load. Once it has, I am able to use the ctx drawImage method to print the contents of the source image back onto the canvas.
 
 ```typescript
 export function loadImgPromise(

@@ -9,10 +9,20 @@ import { Provider } from 'react-redux';
 import { ThunkAction } from 'redux-thunk';
 import { AppState, ActionType } from './Store/Types';
 import { LoadSave } from './Store/Saves/actions';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 
 // Return, State, Extra_arg, Action
 
 type ThunkResult<R> = ThunkAction<R, AppState, void, ActionType>;
+
+const theme = createMuiTheme({
+	palette: {
+		type: 'dark',
+		primary: { main: '#212121' },
+		secondary: { main: '#0D47A1' }
+	}
+});
 
 document.addEventListener('DOMContentLoaded', () => {
 	const HTMLFractalCanvas = document.getElementById(
@@ -46,7 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	ReactDOM.render(
 		<Provider store={store}>
-			<App />
+			<ThemeProvider theme={theme}>
+				<App />
+			</ThemeProvider>
 		</Provider>,
 		document.getElementById('react-root')
 	);

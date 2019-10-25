@@ -3,6 +3,10 @@
   height: 30px;
 }
 
+.app-nav-header > p {
+  margin: 0;
+}
+
 .App > div {
   height: 100vh;
   overflow: auto;

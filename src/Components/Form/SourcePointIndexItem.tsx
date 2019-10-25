@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			margin: theme.spacing(0.5)
 		},
 		color: {
-			gridArea: 'sp_c'
+			gridArea: 'sp_c',
+			margin: theme.spacing(0.5)
 		},
 		shape: {
 			gridArea: 'sp_s'
@@ -128,7 +129,7 @@ export const SourcePointIndexItem: React.FC<SourcePointIndexItemProps> = (
 			/> */}
 			<TextField
 				label="Color"
-				className={classes.textField}
+				className={classes.color}
 				type="color"
 				margin="dense"
 				variant="outlined"
