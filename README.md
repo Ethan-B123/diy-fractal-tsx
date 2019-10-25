@@ -1,44 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# typescript-fractals
 
-## Available Scripts
+This project allows you to create your own fractals. You can create shapes on the canvas and then pick areas to repeatedly print the canvas back onto itself, resulting in fractal patterns. </br></br>
+Check out the project [here](https://typescript-fractals.netlify.com/). You can use the "source points" menu section to build the source image, and the "fractal points" menu to decide how you want the image to repeat onto itself.</br></br>
+The key component of this entire project is the loadImgPromise function. This function allows me to asynchronously load the pixel data of the canvas into an image, and wait for that image to load. Once it has, I am able to use the ctx drawImage method to print the contents of the source image back onto the canvas.
 
-In the project directory, you can run:
+```typescript
+export function loadImgPromise(
+	img: HTMLImageElement,
+	src: string
+): Promise<HTMLImageElement> {
+	return new Promise(resolve => {
+		img.src = src;
+		img.addEventListener('load', () => {
+			resolve(img);
+		});
+	});
+}
+```
 
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```typescript
+while (fractalPointsCopy.length) {
+	this.myImg = await loadImgPromise(this.myImg, this.fCanvas.toDataURL());
+	if (this.updateId !== thisUpdateId) return false;
+	fractalPointsCopy = fractalPointsCopy.filter(
+		(fp: FractalPoint) => fp.iters > 0
+	);
+	for (let i = 0; i < fractalPointsCopy.length; i++) {
+		const fractalPoint = fractalPointsCopy[i];
+		const x = fractalPoint.x - fractalPoint.w / 2;
+		const y = fractalPoint.y - fractalPoint.h / 2;
+		ctx.drawImage(this.myImg, x, y, fractalPoint.w, fractalPoint.h);
+		fractalPoint.iters--;
+	}
+}
+```
